@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Angular 中使用服务进行数据共享 | Home</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    
+    <meta name="description" content="使用输入输出装饰器将数据在父子组件之间传递，如果有10个级别的层次结构，想把数据从顶层传到底层，一定是大型灾难现场，我们可以在服务中通过BehaviorSubject的订阅和发布机制来传递。">
+    
+    <link rel="preload" href="/blog2022/assets/css/0.styles.6fbc45bd.css" as="style"><link rel="preload" href="/blog2022/assets/js/app.bee13893.js" as="script"><link rel="preload" href="/blog2022/assets/js/8.3d3d4774.js" as="script"><link rel="preload" href="/blog2022/assets/js/4.830d4546.js" as="script"><link rel="preload" href="/blog2022/assets/js/22.2bea54c4.js" as="script"><link rel="prefetch" href="/blog2022/assets/js/1.6ea9ac2c.js"><link rel="prefetch" href="/blog2022/assets/js/10.61ae293c.js"><link rel="prefetch" href="/blog2022/assets/js/11.6a03b2b7.js"><link rel="prefetch" href="/blog2022/assets/js/12.388c1704.js"><link rel="prefetch" href="/blog2022/assets/js/13.7fbd3d80.js"><link rel="prefetch" href="/blog2022/assets/js/14.f8774128.js"><link rel="prefetch" href="/blog2022/assets/js/15.1514aa7d.js"><link rel="prefetch" href="/blog2022/assets/js/16.9a695733.js"><link rel="prefetch" href="/blog2022/assets/js/17.0cfcf530.js"><link rel="prefetch" href="/blog2022/assets/js/18.e811feeb.js"><link rel="prefetch" href="/blog2022/assets/js/19.c5832879.js"><link rel="prefetch" href="/blog2022/assets/js/20.e1595b2b.js"><link rel="prefetch" href="/blog2022/assets/js/21.25e45339.js"><link rel="prefetch" href="/blog2022/assets/js/23.74c3d25c.js"><link rel="prefetch" href="/blog2022/assets/js/24.3e4aa546.js"><link rel="prefetch" href="/blog2022/assets/js/5.50fb8c7c.js"><link rel="prefetch" href="/blog2022/assets/js/6.f7b62613.js"><link rel="prefetch" href="/blog2022/assets/js/7.27b67596.js"><link rel="prefetch" href="/blog2022/assets/js/9.b63e8086.js"><link rel="prefetch" href="/blog2022/assets/js/vuejs-paginate.9789751a.js">
+    <link rel="stylesheet" href="/blog2022/assets/css/0.styles.6fbc45bd.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="vuepress-theme-blog__global-layout"><section id="header-wrapper"><header id="header"><div class="header-wrapper"><div class="title"><a href="/" title="Home" class="home-link">00:00, China</a></div> <div class="header-right-wrap"><ul class="nav"><li class="nav-item"><a href="/blog2022/posts/" class="nav-link router-link-active">Posts</a></li></ul> <div class="theme-change"><span class="svg-img"></span></div> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></div></header></section> <div id="mobile-header"><div class="mobile-header-bar"><div class="mobile-header-title"><a href="/blog2022/" class="nav-link mobile-home-link">Home </a> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div> <div class="mobile-menu-wrapper"><hr class="menu-divider"> <ul class="mobile-nav"><li class="mobile-nav-item"><a href="/blog2022/posts/" class="nav-link router-link-active">Posts</a></li> <li class="mobile-nav-item"><!----></li></ul></div></div></div> <div class="content-wrapper"><div id="vuepress-theme-blog__post-layout"><article itemscope="itemscope" itemtype="https://schema.org/BlogPosting" class="vuepress-blog-theme-content"><header><h1 itemprop="name headline" class="post-title">
+        Angular 中使用服务进行数据共享
+      </h1> <div class="post-meta"><!----> <div class="post-meta-date">
+   发表于 
+    <time pubdate itemprop="datePublished" datetime="2022-08-13T00:00:00.000Z">
+      2022 年 08 月 13 日
+    </time></div> <ul itemprop="keywords" class="post-meta-tags"><li class="post-tag" data-v-54f3474f><a href="/blog2022/tag/angular" data-v-54f3474f>
+    #angular
+  </a></li></ul></div></header> <div itemprop="articleBody" class="content__default"><p>使用输入输出装饰器将数据在父子组件之间传递，如果有10个级别的层次结构，想把数据从顶层传到底层，一定是大型灾难现场，我们可以在服务中通过BehaviorSubject的订阅和发布机制来传递。</p> <h3 id="创建一个服务作为数据传输的中间件"><a href="#创建一个服务作为数据传输的中间件" class="header-anchor">#</a> 创建一个服务作为数据传输的中间件</h3> <div class="language-Javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> Injectable <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/core'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> BehaviorSubject <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'rxjs'</span><span class="token punctuation">;</span>
+
+@<span class="token function">Injectable</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    providedIn<span class="token operator">:</span> <span class="token string">'root'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">DataServiceService</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> _dataStream <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BehaviorSubject</span><span class="token punctuation">(</span><span class="token string">&quot;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token comment">//订阅</span>
+    <span class="token function">getDataStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_dataStream<span class="token punctuation">.</span><span class="token function">asObservable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">//发布</span>
+    <span class="token function">putDataToStream</span><span class="token punctuation">(</span><span class="token parameter">data<span class="token operator">:</span> string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>_dataStream<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+</code></pre></div><h3 id="通过中间件发布数据"><a href="#通过中间件发布数据" class="header-anchor">#</a> 通过中间件发布数据</h3> <div class="language-Javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> Component<span class="token punctuation">,</span> OnInit <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/core'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> DataServiceService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'../../../../services/data/data-service.service'</span><span class="token punctuation">;</span>
+
+
+@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    selector<span class="token operator">:</span> <span class="token string">'app-category'</span><span class="token punctuation">,</span>
+    templateUrl<span class="token operator">:</span> <span class="token string">'./category.component.html'</span><span class="token punctuation">,</span>
+    styleUrls<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'./category.component.scss'</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">CategoryComponent</span> <span class="token keyword">implements</span> <span class="token class-name">OnInit</span> <span class="token punctuation">{</span>
+
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter"><span class="token keyword">private</span> dataService<span class="token operator">:</span> DataServiceService</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+
+    <span class="token function">ngOnInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+
+
+    <span class="token function">publishData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>dataService<span class="token punctuation">.</span><span class="token function">putDataToStream</span><span class="token punctuation">(</span><span class="token string">'Data Published form Category'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+</code></pre></div><h3 id="通过中间件获取数据"><a href="#通过中间件获取数据" class="header-anchor">#</a> 通过中间件获取数据</h3> <div class="language-Javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> Component<span class="token punctuation">,</span> OnInit<span class="token punctuation">,</span> Input<span class="token punctuation">,</span> Output<span class="token punctuation">,</span> EventEmitter <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/core'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> DataServiceService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'../../services/data/data-service.service'</span><span class="token punctuation">;</span>
+
+@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    selector<span class="token operator">:</span> <span class="token string">'app-card'</span><span class="token punctuation">,</span>
+    templateUrl<span class="token operator">:</span> <span class="token string">'./card.component.html'</span><span class="token punctuation">,</span>
+    styleUrls<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'./card.component.scss'</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">CardComponent</span> <span class="token keyword">implements</span> <span class="token class-name">OnInit</span> <span class="token punctuation">{</span>
+
+    serviceData<span class="token operator">:</span> string <span class="token operator">=</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">;</span>
+
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter"><span class="token keyword">private</span> dataService<span class="token operator">:</span> DataServiceService</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>dataService<span class="token punctuation">.</span><span class="token function">getDataStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        data<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            <span class="token function-variable function">next</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">data<span class="token operator">:</span> string</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span>serviceData <span class="token operator">=</span> data<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token function-variable function">error</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">err<span class="token operator">:</span> any</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">ngOnInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="asobservable"><a href="#asobservable" class="header-anchor">#</a> asObservable()</h3> <p>细心的可能会发现服务中的get方法，对 <code>new BehaviorSubject()</code> 执行了 <code>.asObservable()</code>, 其实省略这一步依然可以工作。</p> <p>由于所有 <code>RxJS</code> <code>Subject</code>都扩展了<code>Observable</code>类，因此可以在<code>BehaviorSubject</code>实例上使用所有<code>Observable</code>和<code>Subject</code>方法。 <code>asObservable</code>方法将其强制转换为<code>Observable</code>。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> sub <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BehaviorSubject</span><span class="token operator">&lt;</span>any<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+sub<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// works as intended</span>
+<span class="token keyword">const</span> obs <span class="token operator">=</span> sub<span class="token punctuation">.</span><span class="token function">asObservable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+obs<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token string">'bar'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// doesn't work at all</span>
+</code></pre></div><p>所以执行<code>asObservable()</code>之后只能作为<code>被观察对象</code>进行订阅, 不可以再进行 <code>next()</code> 发布，这样是为了 取值（订阅） 和 赋值（发布） 更严谨。</p> <h3 id="概念"><a href="#概念" class="header-anchor">#</a> 概念</h3> <p>Observable 表示<b>被观察对象</b>，其实是一个能够发出通知的对象，observable能够发出三个类型的通知:next、error、complete，其中后两个是可选的。</p> <p>Observer 表示<b>观察者</b>，当一个observer订阅了这个observable后，这个 observable就会向订阅他的observer推送通知， observer会根据不同的通知调用相应的处理器执行操作。</p></div> <footer><!----> <hr> <!----></footer></article> <div class="sticker vuepress-toc"><div class="vuepress-toc-item vuepress-toc-h3 active"><a href="#创建一个服务作为数据传输的中间件" title="创建一个服务作为数据传输的中间件">创建一个服务作为数据传输的中间件</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#通过中间件发布数据" title="通过中间件发布数据">通过中间件发布数据</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#通过中间件获取数据" title="通过中间件获取数据">通过中间件获取数据</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#asobservable" title="asObservable()">asObservable()</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#概念" title="概念">概念</a></div></div></div></div></div><div class="global-ui"></div></div>
+    <script src="/blog2022/assets/js/app.bee13893.js" defer></script><script src="/blog2022/assets/js/8.3d3d4774.js" defer></script><script src="/blog2022/assets/js/4.830d4546.js" defer></script><script src="/blog2022/assets/js/22.2bea54c4.js" defer></script>
+  </body>
+</html>

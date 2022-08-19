@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Angular 生命周期之 ngOnChanges | Home</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    
+    <meta name="description" content="主要用于监测组件输入属性的变化，它会获得一个 SimpleChanges 对象，包含绑定属性的新值和旧值。">
+    
+    <link rel="preload" href="/blog2022/assets/css/0.styles.6fbc45bd.css" as="style"><link rel="preload" href="/blog2022/assets/js/app.bee13893.js" as="script"><link rel="preload" href="/blog2022/assets/js/8.3d3d4774.js" as="script"><link rel="preload" href="/blog2022/assets/js/4.830d4546.js" as="script"><link rel="preload" href="/blog2022/assets/js/23.74c3d25c.js" as="script"><link rel="prefetch" href="/blog2022/assets/js/1.6ea9ac2c.js"><link rel="prefetch" href="/blog2022/assets/js/10.61ae293c.js"><link rel="prefetch" href="/blog2022/assets/js/11.6a03b2b7.js"><link rel="prefetch" href="/blog2022/assets/js/12.388c1704.js"><link rel="prefetch" href="/blog2022/assets/js/13.7fbd3d80.js"><link rel="prefetch" href="/blog2022/assets/js/14.f8774128.js"><link rel="prefetch" href="/blog2022/assets/js/15.1514aa7d.js"><link rel="prefetch" href="/blog2022/assets/js/16.9a695733.js"><link rel="prefetch" href="/blog2022/assets/js/17.0cfcf530.js"><link rel="prefetch" href="/blog2022/assets/js/18.e811feeb.js"><link rel="prefetch" href="/blog2022/assets/js/19.c5832879.js"><link rel="prefetch" href="/blog2022/assets/js/20.e1595b2b.js"><link rel="prefetch" href="/blog2022/assets/js/21.25e45339.js"><link rel="prefetch" href="/blog2022/assets/js/22.2bea54c4.js"><link rel="prefetch" href="/blog2022/assets/js/24.3e4aa546.js"><link rel="prefetch" href="/blog2022/assets/js/5.50fb8c7c.js"><link rel="prefetch" href="/blog2022/assets/js/6.f7b62613.js"><link rel="prefetch" href="/blog2022/assets/js/7.27b67596.js"><link rel="prefetch" href="/blog2022/assets/js/9.b63e8086.js"><link rel="prefetch" href="/blog2022/assets/js/vuejs-paginate.9789751a.js">
+    <link rel="stylesheet" href="/blog2022/assets/css/0.styles.6fbc45bd.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="vuepress-theme-blog__global-layout"><section id="header-wrapper"><header id="header"><div class="header-wrapper"><div class="title"><a href="/" title="Home" class="home-link">00:00, China</a></div> <div class="header-right-wrap"><ul class="nav"><li class="nav-item"><a href="/blog2022/posts/" class="nav-link router-link-active">Posts</a></li></ul> <div class="theme-change"><span class="svg-img"></span></div> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></div></header></section> <div id="mobile-header"><div class="mobile-header-bar"><div class="mobile-header-title"><a href="/blog2022/" class="nav-link mobile-home-link">Home </a> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div> <div class="mobile-menu-wrapper"><hr class="menu-divider"> <ul class="mobile-nav"><li class="mobile-nav-item"><a href="/blog2022/posts/" class="nav-link router-link-active">Posts</a></li> <li class="mobile-nav-item"><!----></li></ul></div></div></div> <div class="content-wrapper"><div id="vuepress-theme-blog__post-layout"><article itemscope="itemscope" itemtype="https://schema.org/BlogPosting" class="vuepress-blog-theme-content"><header><h1 itemprop="name headline" class="post-title">
+        Angular 生命周期之 ngOnChanges
+      </h1> <div class="post-meta"><!----> <div class="post-meta-date">
+   发表于 
+    <time pubdate itemprop="datePublished" datetime="2022-08-15T00:00:00.000Z">
+      2022 年 08 月 15 日
+    </time></div> <ul itemprop="keywords" class="post-meta-tags"><li class="post-tag" data-v-54f3474f><a href="/blog2022/tag/angular" data-v-54f3474f>
+    #angular
+  </a></li></ul></div></header> <div itemprop="articleBody" class="content__default"><h2 id="示例"><a href="#示例" class="header-anchor">#</a> 示例</h2> <h3 id="child-component-ts"><a href="#child-component-ts" class="header-anchor">#</a> child.component.ts</h3> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> Component<span class="token punctuation">,</span> OnInit<span class="token punctuation">,</span> Input<span class="token punctuation">,</span> SimpleChanges <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/core'</span><span class="token punctuation">;</span>
+
+@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  selector<span class="token operator">:</span> <span class="token string">'app-child'</span><span class="token punctuation">,</span>
+  template<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+    &lt;a (click)=&quot;changeFromChild()&quot;&gt;Change from child&lt;/a&gt;
+    &lt;br/&gt;
+    {{parentData}}
+  </span><span class="token template-punctuation string">`</span></span>	
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">ChildComponent</span> <span class="token keyword">implements</span> <span class="token class-name">OnInit</span> <span class="token punctuation">{</span>
+  @<span class="token function">Input</span><span class="token punctuation">(</span><span class="token punctuation">)</span> parentData<span class="token operator">:</span> any<span class="token punctuation">;</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">ngOnInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">changeFromChild</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>parentData <span class="token operator">-=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">ngOnChanges</span><span class="token punctuation">(</span><span class="token parameter">changes<span class="token operator">:</span> SimpleChanges</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>changes<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><h3 id="父组件-ts"><a href="#父组件-ts" class="header-anchor">#</a> 父组件.ts</h3> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> Component<span class="token punctuation">,</span> OnInit <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/core'</span><span class="token punctuation">;</span>
+
+@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  selector<span class="token operator">:</span> <span class="token string">'app-parent'</span><span class="token punctuation">,</span>
+  template<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+    &lt;a (click)=&quot;changeFromParent()&quot;&gt;Change from parent&lt;/a&gt;
+    &lt;br/&gt;
+    &lt;app-child [parentData]=data&gt;&lt;/app-child&gt;
+  </span><span class="token template-punctuation string">`</span></span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">ParentComponent</span> <span class="token keyword">implements</span> <span class="token class-name">OnInit</span> <span class="token punctuation">{</span>
+  data <span class="token operator">=</span> <span class="token number">0</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">ngOnInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">changeFromParent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>data <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li><code>ngOnChanges()</code> 将在 <code>ngOnInit()</code> 之前触发，并且每次 <code>parentData</code> 从其父组件更新时触发</li> <li><code>ngOnChanges()</code> 采用 <code>SimpleChanges</code> 类型的更改参数。</li> <li><code>changeFromChild()</code> 不会调用 <code>ngOnChanges()</code></li> <li><code>changeFromParent()</code> 将调用<code>ngOnChanges()</code></li> <li>当调用 <code>ngOnChanges()</code>时，此示例仅记录 <code>SimpleChanges</code> 实例。</li></ul> <p>每次调用 <code>ngOnChanges()</code> 时，<code>SimpleChanges</code> 实例都会捕获 <code>parentData</code>的</p> <ul><li>上一个值</li> <li>当前值</li> <li>firstChange（第一次调用 ngOnChanges 时为真）</li></ul> <p>下面是示例记录的SimpleChange对象：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token function">ngOnChanges</span><span class="token punctuation">(</span><span class="token parameter">changes<span class="token operator">:</span> SimpleChanges</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>changes<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment">//console output</span>
+<span class="token punctuation">{</span>
+  parentData<span class="token operator">:</span> <span class="token punctuation">{</span> currentValue<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> firstChange<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> previousValue<span class="token operator">:</span> <span class="token number">0</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="多输入呢"><a href="#多输入呢" class="header-anchor">#</a> 多输入呢？</h3> <p>每个输入属性在单个对象中与其对应的 SimpleChanges 实例一起返回</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//SimpleChanges object with multiple inputs</span>
+<span class="token punctuation">{</span>
+  parentData<span class="token operator">:</span> <span class="token punctuation">{</span> currentValue<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> firstChange<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> previousValue<span class="token operator">:</span> <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  firstName<span class="token operator">:</span> <span class="token punctuation">{</span> currentValue<span class="token operator">:</span> <span class="token string">&quot;Sam&quot;</span><span class="token punctuation">,</span> firstChange<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> previousValue<span class="token operator">:</span> <span class="token string">&quot;Eric&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  age<span class="token operator">:</span> <span class="token punctuation">{</span> currentValue<span class="token operator">:</span> <span class="token number">25</span><span class="token punctuation">,</span> firstChange<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> previousValue<span class="token operator">:</span> <span class="token number">20</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="ngonchanges-与-ngoninit"><a href="#ngonchanges-与-ngoninit" class="header-anchor">#</a> ngOnChanges 与 ngOnInit</h3> <p><code>ngOnInit</code> 在组件初始化时只被<font color="#96151d">调用一次</font>。</p> <p><code>ngOnChanges</code> 在 <code>ngOnInit</code> 之前以及每当组件的绑定输入从父组件更改时被调用。</p> <blockquote><p>请记住，<code>ngOnChanges</code> 特定于子组件上的绑定输入。这意味着如果您没有任何 <code>@Input</code> 属性，则永远不会调用 <code>ngOnChanges</code>。</p></blockquote> <h3 id="什么时候应该使用-ngonchanges"><a href="#什么时候应该使用-ngonchanges" class="header-anchor">#</a> 什么时候应该使用 ngOnChanges？</h3> <p>每当您想检测由 <code>@Input</code> 修饰的变量的更改时，请使用 <code>ngOnChanges</code>。请记住，只有父组件的更改才会触发此功能。</p> <p>还要记住，即使没有实现 ngOnChanges，来自父级的更改仍然会更新子级值。<code>ngOnChanges</code> 只是增加了跟踪先前值和当前值的追踪功能。</p></div> <footer><!----> <hr> <!----></footer></article> <div class="sticker vuepress-toc"><div class="vuepress-toc-item vuepress-toc-h2 active"><a href="#示例" title="示例">示例</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#child-component-ts" title="child.component.ts">child.component.ts</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#父组件-ts" title="父组件.ts">父组件.ts</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#多输入呢" title="多输入呢？">多输入呢？</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#ngonchanges-与-ngoninit" title="ngOnChanges 与 ngOnInit">ngOnChanges 与 ngOnInit</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#什么时候应该使用-ngonchanges" title="什么时候应该使用 ngOnChanges？">什么时候应该使用 ngOnChanges？</a></div></div></div></div></div><div class="global-ui"></div></div>
+    <script src="/blog2022/assets/js/app.bee13893.js" defer></script><script src="/blog2022/assets/js/8.3d3d4774.js" defer></script><script src="/blog2022/assets/js/4.830d4546.js" defer></script><script src="/blog2022/assets/js/23.74c3d25c.js" defer></script>
+  </body>
+</html>
