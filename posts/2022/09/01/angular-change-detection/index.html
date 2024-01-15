@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>angular 变更检测策略 | Home</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    
+    <meta name="description" content="
+Default
+OnPush
+@Component 装饰器上，通过changeDetection属性来修改策略
+默认：changeDetection: ChangeDetectionStrategy.Default。
+改为OnPush
+`js
+@Component({
+    selector: "app-view",
+    templat ...">
+    
+    <link rel="preload" href="/blog2022/assets/css/0.styles.8a2e5221.css" as="style"><link rel="preload" href="/blog2022/assets/js/app.623e41db.js" as="script"><link rel="preload" href="/blog2022/assets/js/8.1f5a1c55.js" as="script"><link rel="preload" href="/blog2022/assets/js/11.37250134.js" as="script"><link rel="preload" href="/blog2022/assets/js/4.f2a44f11.js" as="script"><link rel="preload" href="/blog2022/assets/js/29.932f360c.js" as="script"><link rel="prefetch" href="/blog2022/assets/js/1.6a0d5f9e.js"><link rel="prefetch" href="/blog2022/assets/js/10.ab5be33a.js"><link rel="prefetch" href="/blog2022/assets/js/12.2aa125bf.js"><link rel="prefetch" href="/blog2022/assets/js/13.fa0189a0.js"><link rel="prefetch" href="/blog2022/assets/js/14.652ca8b0.js"><link rel="prefetch" href="/blog2022/assets/js/15.fc6b41f2.js"><link rel="prefetch" href="/blog2022/assets/js/16.3a5d9394.js"><link rel="prefetch" href="/blog2022/assets/js/17.4156ca5f.js"><link rel="prefetch" href="/blog2022/assets/js/18.c7c876e9.js"><link rel="prefetch" href="/blog2022/assets/js/19.a28e1293.js"><link rel="prefetch" href="/blog2022/assets/js/20.f78198ca.js"><link rel="prefetch" href="/blog2022/assets/js/21.3cbf33e2.js"><link rel="prefetch" href="/blog2022/assets/js/22.ae6ef13e.js"><link rel="prefetch" href="/blog2022/assets/js/23.5a301cdb.js"><link rel="prefetch" href="/blog2022/assets/js/24.622a212d.js"><link rel="prefetch" href="/blog2022/assets/js/25.0d3e31cf.js"><link rel="prefetch" href="/blog2022/assets/js/26.f98d17e9.js"><link rel="prefetch" href="/blog2022/assets/js/27.88bc2c2f.js"><link rel="prefetch" href="/blog2022/assets/js/28.ad55a9af.js"><link rel="prefetch" href="/blog2022/assets/js/30.886c7c1d.js"><link rel="prefetch" href="/blog2022/assets/js/31.f4adeafc.js"><link rel="prefetch" href="/blog2022/assets/js/32.96a75b99.js"><link rel="prefetch" href="/blog2022/assets/js/33.94860aaa.js"><link rel="prefetch" href="/blog2022/assets/js/34.ea92116e.js"><link rel="prefetch" href="/blog2022/assets/js/35.ccb988d4.js"><link rel="prefetch" href="/blog2022/assets/js/36.96aa7bfb.js"><link rel="prefetch" href="/blog2022/assets/js/37.b11fdf8d.js"><link rel="prefetch" href="/blog2022/assets/js/38.93a943a4.js"><link rel="prefetch" href="/blog2022/assets/js/5.8f1add8d.js"><link rel="prefetch" href="/blog2022/assets/js/6.3d2cea47.js"><link rel="prefetch" href="/blog2022/assets/js/7.5e3089cc.js"><link rel="prefetch" href="/blog2022/assets/js/9.68f228d8.js"><link rel="prefetch" href="/blog2022/assets/js/vuejs-paginate.594107eb.js">
+    <link rel="stylesheet" href="/blog2022/assets/css/0.styles.8a2e5221.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="vuepress-theme-blog__global-layout"><section id="header-wrapper"><header id="header"><div class="header-wrapper"><div class="title"><a href="/blog2022/" title="Home" class="home-link router-link-active">00:00, China</a></div> <div class="header-right-wrap"><ul class="nav"><li class="nav-item"><a href="/blog2022/posts/" class="nav-link router-link-active">Posts</a></li><li class="nav-item"><a href="/blog2022/tag/" class="nav-link">Tag</a></li></ul> <div class="theme-change"><span class="svg-img"></span></div> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></div></header></section> <div id="mobile-header"><div class="mobile-header-bar"><div class="mobile-header-title"><a href="/blog2022/" class="nav-link mobile-home-link">Home </a> <div style="margin-left:auto;margin-right:15px;" data-v-4d50cdd8><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" size="1.5x" class="custom-class icon feather feather-headphones" data-v-4d50cdd8 data-v-4d50cdd8><path d="M3 18v-6a9 9 0 0 1 18 0v6" data-v-4d50cdd8 data-v-4d50cdd8></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" data-v-4d50cdd8 data-v-4d50cdd8></path></svg> <div class="el-dialog__wrapper" style="display:none;" data-v-4d50cdd8><div role="dialog" aria-modal="true" aria-label="是否需要朗读代码?" class="el-dialog" style="margin-top:15vh;width:25%;"><div class="el-dialog__header"><span class="el-dialog__title">是否需要朗读代码?</span><button type="button" aria-label="Close" class="el-dialog__headerbtn"><i class="el-dialog__close el-icon el-icon-close"></i></button></div><!----><!----></div></div></div> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div> <div class="mobile-menu-wrapper"><hr class="menu-divider"> <ul class="mobile-nav"><li class="mobile-nav-item"><a href="/blog2022/posts/" class="nav-link router-link-active">Posts</a></li><li class="mobile-nav-item"><a href="/blog2022/tag/" class="nav-link">Tag</a></li> <li class="mobile-nav-item"><!----></li></ul></div></div></div> <div class="content-wrapper"><div id="vuepress-theme-blog__post-layout"><article itemscope="itemscope" itemtype="https://schema.org/BlogPosting" class="vuepress-blog-theme-content"><header><h1 itemprop="name headline" class="post-title">
+        angular 变更检测策略
+      </h1> <div class="post-meta"><!----> <div class="post-meta-date">
+   发表于 
+    <time pubdate itemprop="datePublished" datetime="2022-09-01T00:00:00.000Z">
+      2022 年 09 月 01 日
+    </time></div> <ul itemprop="keywords" class="post-meta-tags"><li class="post-tag" data-v-54f3474f><a href="/blog2022/tag/angular" data-v-54f3474f>
+    #angular
+  </a></li></ul></div></header> <div itemprop="articleBody" class="content__default"><h2 id="angular-提供两种变更检测策略"><a href="#angular-提供两种变更检测策略" class="header-anchor">#</a> Angular  提供两种变更检测策略</h2> <ul><li>Default</li> <li>OnPush</li></ul> <p><code>@Component</code> 装饰器上，通过<code>changeDetection</code>属性来修改策略</p> <p>默认：<code>changeDetection: ChangeDetectionStrategy.Default</code>。</p> <p>改为OnPush</p> <div class="language-js extra-class"><pre class="language-js"><code>@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    selector<span class="token operator">:</span> <span class="token string">&quot;app-view&quot;</span><span class="token punctuation">,</span>
+    template<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">...</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    changeDetection<span class="token operator">:</span> ChangeDetectionStrategy<span class="token punctuation">.</span>OnPush
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="先说结论"><a href="#先说结论" class="header-anchor">#</a> 先说结论：</h2> <p>OnPush 策略并不是把所有的变更检测都禁掉了，下面三种情况依然可以自动触发变更检测</p> <ol><li><p>@Input<b>引用</b>发生变化</p></li> <li><p>事件，比如 click、submit、mouse down...</p></li> <li><p>Observable  事件订阅，同时设置 Async pipe</p></li> <li><p>手动触发变更检测</p></li></ol> <ul><li>ChangeDetectorRef.detectChanges</li> <li>ChangeDetectorRef.markForCheck()</li> <li>ApplicationRef.tick()</li></ul> <h2 id="示例说明"><a href="#示例说明" class="header-anchor">#</a> 示例说明：</h2> <h3 id="_1-input引用发生变化"><a href="#_1-input引用发生变化" class="header-anchor">#</a> 1.  @Input<b>引用</b>发生变化</h3> <p>在 JS 中有七种数据类型，其中包括六中基本类型, 一种引用类型。</p> <p>六种基本类型分别为：Boolean、Number、String、Null、Undefined、Symbol (ECMAScript 6 新定义)。
+一种引用类型：对象(Object)、数组(Array)、函数(Function)，还有两个特殊的对象：正则（RegExp）和日期（Date）</p> <p>基本类型每次对它们的修改都会在内存里生成一个新的值， 而 <code>Object</code> 是通过引用传递的，每次对 Object 属性改动，引用不会改变。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//父组件</span>
+@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    template<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">&lt;h1&gt;I am { { data.name } } &lt;/h1&gt;
+
+               &lt;app-child [data]=&quot;data&quot;&gt;&lt;/-child&gt;
+   
+               &lt;button (click)=&quot;changeDate()&quot;&gt;Change&lt;/button&gt;</span><span class="token template-punctuation string">`</span></span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">ParentComponent</span> <span class="token punctuation">{</span>
+    data<span class="token operator">:</span> any <span class="token operator">=</span> <span class="token punctuation">{</span>
+        name<span class="token operator">:</span> <span class="token string">'xiaoming'</span><span class="token punctuation">,</span>
+        contact<span class="token operator">:</span> <span class="token punctuation">{</span>
+            email<span class="token operator">:</span> <span class="token string">'XXX@gmail.com'</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token function">changeDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>data<span class="token punctuation">.</span>contact<span class="token punctuation">.</span>email <span class="token operator">=</span> <span class="token string">'new@gmail.com'</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>data<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'xiaohei'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//子组件</span>
+@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    selector<span class="token operator">:</span> <span class="token string">&quot;app-child&quot;</span><span class="token punctuation">,</span>
+    template<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">{ { data.contact.email } } </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    changeDetection<span class="token operator">:</span> ChangeDetectionStrategy<span class="token punctuation">.</span>OnPush
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">CDChildComponent</span> <span class="token keyword">implements</span> <span class="token class-name">OnChanges</span> <span class="token punctuation">{</span>
+    @<span class="token function">Input</span><span class="token punctuation">(</span><span class="token punctuation">)</span> data<span class="token operator">:</span> any<span class="token punctuation">;</span>
+
+    <span class="token function">ngOnChanges</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'data has been changed'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>子组件@Component 上加了<code>changeDetection: ChangeDetectionStrategy.OnPush</code>, 我们点击 Change按钮，子组件 email 没有变化,因为对象的引用没有改变，不触发变更检测，。</p> <blockquote><p>在 ChildComponent 加了 OnPush 表示，不会触发这个组件的变化检测。如果 OnPush 是加在某个父组件上，那么这个父组件和它下面所有的子组件都不会触发变化检测。</p></blockquote> <h3 id="_2-事件触发"><a href="#_2-事件触发" class="header-anchor">#</a> 2. 事件触发</h3> <p>组件的 DOM 事件，包括其子组件的 DOM 事件，如 click、submit、mouse down 等，在 OnPush 策略下，会触发组件的变化检测。</p> <p>在 <code>ChildComponent</code> 加一个 counter，并把它显示在页面里，在 ngOnInit 里把设置了 setInterval，每过一秒就让counter+1，代码如下：</p> <div class="language-js extra-class"><pre class="language-js"><code>@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    selector<span class="token operator">:</span> <span class="token string">&quot;app-child&quot;</span><span class="token punctuation">,</span>
+    template<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">&lt;h3&gt; child: { { counter } }&lt;/h3&gt;
+                </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    changeDetection<span class="token operator">:</span> ChangeDetectionStrategy<span class="token punctuation">.</span>OnPush
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">CDChildComponent</span> <span class="token keyword">implements</span> <span class="token class-name">OnInit</span><span class="token punctuation">,</span> OnChanges <span class="token punctuation">{</span>
+    @<span class="token function">Input</span><span class="token punctuation">(</span><span class="token punctuation">)</span> data<span class="token operator">:</span> any<span class="token punctuation">;</span>
+    counter<span class="token operator">:</span> number <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+    <span class="token function">ngOnInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>counter<span class="token operator">++</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">ngOnChanges</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'data has been changed'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p>如果是默认的变化检测策略，setInterval 会触发组件变化检测，页面的 counter 会每过一秒就自动更新一次。现在设置了 <code>OnPush</code>，setInterval 不会触发变化检测，页面上的 counter 不会有任何变化。</p></blockquote> <p>在 <code>ChildComponent</code> 页面加一个按钮，在这个按钮的点击事件里，设置每点击一次按钮让counter+1，具体代码如下：</p> <div class="language-js extra-class"><pre class="language-js"><code>@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    selector<span class="token operator">:</span> <span class="token string">&quot;app-child&quot;</span><span class="token punctuation">,</span>
+    template<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+              &lt;h3&gt; child: { { counter } } &lt;/h3&gt;
+              &lt;button (click)=&quot;changeCounter()&quot;&gt;change child counter&lt;/button&gt;
+               </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    changeDetection<span class="token operator">:</span> ChangeDetectionStrategy<span class="token punctuation">.</span>OnPush
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">CDChildComponent</span> <span class="token keyword">implements</span> <span class="token class-name">OnChanges</span> <span class="token punctuation">{</span>
+    @<span class="token function">Input</span><span class="token punctuation">(</span><span class="token punctuation">)</span> data<span class="token operator">:</span> any<span class="token punctuation">;</span>
+    counter<span class="token operator">:</span> number <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+    <span class="token function">changeCounter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>counter<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">ngOnChanges</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'data has been changed'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p>按钮点击事件是属于 DOM 事件，虽然在 <code>ChildComponent</code> 设置了 <code>OnPush</code>，组件的 DOM 事件（或者它的子组件DOM事件）还是会触发这个组件的变化检测，页面的 counter 会更新</p></blockquote> <h3 id="_3-observable-事件订阅-同时设置-async-pipe"><a href="#_3-observable-事件订阅-同时设置-async-pipe" class="header-anchor">#</a> <span id="async">3. Observable 事件订阅，同时设置 Async pipe</span></h3> <p>在 <code>ChildComponent</code> 有<code>Observable</code>事件订阅，并在模板里设置<code>Async pipe</code>，在 <code>OnPush</code> 策略下，会触发变化检测，代码如下：</p> <div class="language-js extra-class"><pre class="language-js"><code>@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    selector<span class="token operator">:</span> <span class="token string">&quot;app-child&quot;</span><span class="token punctuation">,</span>
+    template<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">&lt;h3&gt;child: { { count$ | async } } &lt;/h3&gt;
+               </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    changeDetection<span class="token operator">:</span> ChangeDetectionStrategy<span class="token punctuation">.</span>OnPush
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">ChildComponent</span> <span class="token keyword">implements</span> <span class="token class-name">OnInit</span><span class="token punctuation">,</span> OnChanges <span class="token punctuation">{</span>
+    @<span class="token function">Input</span><span class="token punctuation">(</span><span class="token punctuation">)</span> data<span class="token operator">:</span> any<span class="token punctuation">;</span>
+    counter<span class="token operator">:</span> number <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    count$<span class="token operator">:</span> Observable<span class="token operator">&lt;</span>number<span class="token operator">&gt;</span><span class="token punctuation">;</span>
+
+    <span class="token function">ngOnInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>count$ <span class="token operator">=</span> <span class="token function">interval</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>
+                <span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">count<span class="token operator">:</span> number</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token operator">++</span>count<span class="token punctuation">)</span>
+            <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">ngOnChanges</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'data has been changed'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>这时候页面的会每隔一秒更新一次</p> <h3 id="_4-手动触发变更检测"><a href="#_4-手动触发变更检测" class="header-anchor">#</a> 4. 手动触发变更检测</h3> <p>在 OnPush 策略下，手动三种方式会触发变化检测：</p> <ul><li>ChangeDetectorRef.detectChanges</li> <li>ChangeDetectorRef.markForCheck()</li> <li>ApplicationRef.tick()</li></ul> <h4 id="changedetectorref-detectchanges"><a href="#changedetectorref-detectchanges" class="header-anchor">#</a> ChangeDetectorRef.detectChanges()</h4> <div class="language-js extra-class"><pre class="language-js"><code>@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    selector<span class="token operator">:</span> <span class="token string">&quot;app-child&quot;</span><span class="token punctuation">,</span>
+    template<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+                &lt;h3&gt; child: { { counter } } &lt;/h3&gt; 
+              </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    changeDetection<span class="token operator">:</span> ChangeDetectionStrategy<span class="token punctuation">.</span>OnPush
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">ChildComponent</span> <span class="token keyword">implements</span> <span class="token class-name">OnInit</span><span class="token punctuation">,</span> OnChanges <span class="token punctuation">{</span>
+    @<span class="token function">Input</span><span class="token punctuation">(</span><span class="token punctuation">)</span> data<span class="token operator">:</span> any<span class="token punctuation">;</span>
+    counter<span class="token operator">:</span> number <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter"><span class="token keyword">private</span> cd<span class="token operator">:</span> ChangeDetectorRef</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+
+    <span class="token function">ngOnInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>counter <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>counter <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>cd<span class="token punctuation">.</span><span class="token function">detectChanges</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">ngOnChanges</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'data has been changed'</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p>立刻触发当前组件及子组件的变更检测</p></blockquote> <h4 id="changedetectorref-markforcheck"><a href="#changedetectorref-markforcheck" class="header-anchor">#</a> ChangeDetectorRef.markForCheck()</h4> <div class="language-js extra-class"><pre class="language-js"><code>@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    selector<span class="token operator">:</span> <span class="token string">&quot;app-child&quot;</span><span class="token punctuation">,</span>
+    template<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+                &lt;h3&gt; child: { { counter } } &lt;/h3&gt; 
+              </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    changeDetection<span class="token operator">:</span> ChangeDetectionStrategy<span class="token punctuation">.</span>OnPush
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">ChildComponent</span> <span class="token keyword">implements</span> <span class="token class-name">OnInit</span><span class="token punctuation">,</span> OnChanges <span class="token punctuation">{</span>
+    @<span class="token function">Input</span><span class="token punctuation">(</span><span class="token punctuation">)</span> data<span class="token operator">:</span> any<span class="token punctuation">;</span>
+    counter<span class="token operator">:</span> number <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter"><span class="token keyword">private</span> cd<span class="token operator">:</span> ChangeDetectorRef</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+
+    <span class="token function">ngOnInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>counter <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>counter <span class="token operator">+</span> <span class="token number">10</span><span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>cd<span class="token punctuation">.</span><span class="token function">markForCheck</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">ngOnChanges</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'data has been changed:'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p>效果跟 <code>detectChanges</code> 是一样的，只不过 <code>detectChanges</code> 会立马触发当前组件和它子组件变化检测。<code>markForCheck</code> 并不会立马触发变化检测，而是标记需要被变化检测，在当前或下一轮的变化检测中被触发。</p></blockquote> <h4 id="applicationref-tick"><a href="#applicationref-tick" class="header-anchor">#</a> ApplicationRef.tick()</h4> <div class="language-js extra-class"><pre class="language-js"><code>@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    selector<span class="token operator">:</span> <span class="token string">&quot;app-child&quot;</span><span class="token punctuation">,</span>
+    template<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+                &lt;h3&gt; child: { { counter } } &lt;/h3&gt; 
+              </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    changeDetection<span class="token operator">:</span> ChangeDetectionStrategy<span class="token punctuation">.</span>OnPush
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">ChildComponent</span> <span class="token keyword">implements</span> <span class="token class-name">OnInit</span><span class="token punctuation">,</span> OnChanges <span class="token punctuation">{</span>
+    @<span class="token function">Input</span><span class="token punctuation">(</span><span class="token punctuation">)</span> data<span class="token operator">:</span> any<span class="token punctuation">;</span>
+    counter<span class="token operator">:</span> number <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token keyword">private</span> applicationRef<span class="token operator">:</span> ApplicationRef<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+
+    <span class="token function">ngOnInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>counter <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>counter <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+             <span class="token keyword">this</span><span class="token punctuation">.</span>applicationRef<span class="token punctuation">.</span><span class="token function">tick</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">ngOnChanges</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'data has been changed'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p><code>ApplicationRef.tick()</code> 触发整个应用的组件树从上到下执行变化检测。</p></blockquote> <h2 id="什么是asyncpipe"><a href="#什么是asyncpipe" class="header-anchor">#</a> 什么是AsyncPipe</h2> <p>来自angular官方文档：AsyncPipe会订阅一个Observable或者Promise并返回它发出的最近的一个值，AsyncPipe会将该组件标记为需要进行变更检测，当组件被销毁时，AsyncPipe会自动取消订阅，以消除内存泄漏。</p> <p>angular 异步管道允许订阅 angular 模板语法内的 observable，并负责自动取消订阅 observable。<a href="#async">代码</a></p> <h4 id="直接用subscribe-订阅也挺方便的-为什么要使用异步管道呢"><a href="#直接用subscribe-订阅也挺方便的-为什么要使用异步管道呢" class="header-anchor">#</a> 直接用subscribe 订阅也挺方便的，为什么要使用异步管道呢？</h4> <p>需要取消订阅的业务，推荐用异步管道，如果不用异步管道，需要多如下代码。</p> <ol><li><code>ngOnint中</code>添加对observable的订阅</li> <li>为了防止内存泄漏，<code>ngOnDestory</code>中添加<code>unsubscribe</code></li></ol> <blockquote><p>通过API 返回的数据，不需要调用 unsubscribe() 取消订阅，因为 Http Request 返回的 Observables 是 Cold Observable 并且只发送一个值，Cold Observable 在值发送完成以后，RxJS 会执行 OnCompleted 方法，表示这个 Observable 已经结束了，自动释放资源。</p></blockquote></div> <footer><!----> <hr> <!----></footer></article> <div class="sticker vuepress-toc"><div class="vuepress-toc-item vuepress-toc-h2 active"><a href="#angular-提供两种变更检测策略" title="Angular  提供两种变更检测策略">Angular  提供两种变更检测策略</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#先说结论" title="先说结论：">先说结论：</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#示例说明" title="示例说明：">示例说明：</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#_1-input引用发生变化" title="1.  @Input发生变化">1.  @Input发生变化</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#_2-事件触发" title="2. 事件触发">2. 事件触发</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#_3-observable-事件订阅-同时设置-async-pipe" title=""></a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#_4-手动触发变更检测" title="4. 手动触发变更检测">4. 手动触发变更检测</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#什么是asyncpipe" title="什么是AsyncPipe">什么是AsyncPipe</a></div></div></div></div></div><div class="global-ui"></div></div>
+    <script src="/blog2022/assets/js/app.623e41db.js" defer></script><script src="/blog2022/assets/js/8.1f5a1c55.js" defer></script><script src="/blog2022/assets/js/11.37250134.js" defer></script><script src="/blog2022/assets/js/4.f2a44f11.js" defer></script><script src="/blog2022/assets/js/29.932f360c.js" defer></script>
+  </body>
+</html>
