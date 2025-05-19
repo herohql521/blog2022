@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>开发npm组件包 | Home</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    
+    <meta name="description" content="vue轮子发布到npm">
+    
+    <link rel="preload" href="/blog2022/assets/css/0.styles.a7cd482a.css" as="style"><link rel="preload" href="/blog2022/assets/js/app.e07d4dc1.js" as="script"><link rel="preload" href="/blog2022/assets/js/8.0521c81c.js" as="script"><link rel="preload" href="/blog2022/assets/js/4.6dd61d22.js" as="script"><link rel="preload" href="/blog2022/assets/js/10.86036be1.js" as="script"><link rel="prefetch" href="/blog2022/assets/js/1.728b11eb.js"><link rel="prefetch" href="/blog2022/assets/js/11.cb5c778b.js"><link rel="prefetch" href="/blog2022/assets/js/12.a3fe2c71.js"><link rel="prefetch" href="/blog2022/assets/js/13.c6ecff6c.js"><link rel="prefetch" href="/blog2022/assets/js/14.52b3695c.js"><link rel="prefetch" href="/blog2022/assets/js/15.bcf01bb8.js"><link rel="prefetch" href="/blog2022/assets/js/16.b2d26ef5.js"><link rel="prefetch" href="/blog2022/assets/js/17.886d1554.js"><link rel="prefetch" href="/blog2022/assets/js/18.dbdd6fa1.js"><link rel="prefetch" href="/blog2022/assets/js/19.4c1c7f06.js"><link rel="prefetch" href="/blog2022/assets/js/20.26267d66.js"><link rel="prefetch" href="/blog2022/assets/js/21.2685d5b3.js"><link rel="prefetch" href="/blog2022/assets/js/22.55a67b51.js"><link rel="prefetch" href="/blog2022/assets/js/23.dbfc4f2a.js"><link rel="prefetch" href="/blog2022/assets/js/24.df4e8807.js"><link rel="prefetch" href="/blog2022/assets/js/25.a74b29ca.js"><link rel="prefetch" href="/blog2022/assets/js/26.1fdafdeb.js"><link rel="prefetch" href="/blog2022/assets/js/27.160c27f3.js"><link rel="prefetch" href="/blog2022/assets/js/28.b4ba4957.js"><link rel="prefetch" href="/blog2022/assets/js/29.90fe8124.js"><link rel="prefetch" href="/blog2022/assets/js/30.641c76a1.js"><link rel="prefetch" href="/blog2022/assets/js/31.9e724ad4.js"><link rel="prefetch" href="/blog2022/assets/js/32.33b18cce.js"><link rel="prefetch" href="/blog2022/assets/js/33.2561125a.js"><link rel="prefetch" href="/blog2022/assets/js/34.9b247133.js"><link rel="prefetch" href="/blog2022/assets/js/35.40c2c2d4.js"><link rel="prefetch" href="/blog2022/assets/js/36.e3992b32.js"><link rel="prefetch" href="/blog2022/assets/js/37.401200b6.js"><link rel="prefetch" href="/blog2022/assets/js/38.6c9934bc.js"><link rel="prefetch" href="/blog2022/assets/js/39.8291a694.js"><link rel="prefetch" href="/blog2022/assets/js/40.a0024efd.js"><link rel="prefetch" href="/blog2022/assets/js/41.b83b0198.js"><link rel="prefetch" href="/blog2022/assets/js/42.5d0bbb18.js"><link rel="prefetch" href="/blog2022/assets/js/43.159da7ac.js"><link rel="prefetch" href="/blog2022/assets/js/44.6cf5e9e8.js"><link rel="prefetch" href="/blog2022/assets/js/45.f6b3f510.js"><link rel="prefetch" href="/blog2022/assets/js/5.75cddc69.js"><link rel="prefetch" href="/blog2022/assets/js/6.c772c38c.js"><link rel="prefetch" href="/blog2022/assets/js/7.00225c5c.js"><link rel="prefetch" href="/blog2022/assets/js/9.3e8366b3.js"><link rel="prefetch" href="/blog2022/assets/js/vuejs-paginate.ffdf0f29.js">
+    <link rel="stylesheet" href="/blog2022/assets/css/0.styles.a7cd482a.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="vuepress-theme-blog__global-layout"><section id="header-wrapper"><header id="header"><div class="header-wrapper"><div class="title"><a href="/blog2022/" title="Home" class="home-link router-link-active">00:00, China</a></div> <div class="header-right-wrap"><ul class="nav"><li class="nav-item"><a href="/blog2022/posts/" class="nav-link router-link-active">Posts</a></li><li class="nav-item"><a href="/blog2022/tag/" class="nav-link">Tag</a></li></ul> <div class="theme-change"><span class="svg-img"></span></div> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></div></header></section> <div id="mobile-header"><div class="mobile-header-bar"><div class="mobile-header-title"><a href="/blog2022/" class="nav-link mobile-home-link">Home </a> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div> <div class="mobile-menu-wrapper"><hr class="menu-divider"> <ul class="mobile-nav"><li class="mobile-nav-item"><a href="/blog2022/posts/" class="nav-link router-link-active">Posts</a></li><li class="mobile-nav-item"><a href="/blog2022/tag/" class="nav-link">Tag</a></li> <li class="mobile-nav-item"><!----></li></ul></div></div></div> <div class="content-wrapper"><div id="vuepress-theme-blog__post-layout"><article itemscope="itemscope" itemtype="https://schema.org/BlogPosting" class="vuepress-blog-theme-content"><header><h1 itemprop="name headline" class="post-title">
+        开发npm组件包
+      </h1> <div class="post-meta"><!----> <div class="post-meta-date">
+   发表于 
+    <time pubdate itemprop="datePublished" datetime="2024-06-28T00:00:00.000Z">
+      2024 年 06 月 28 日
+    </time></div> <ul itemprop="keywords" class="post-meta-tags"><li class="post-tag" data-v-54f3474f><a href="/blog2022/tag/沉思" data-v-54f3474f>
+    #沉思
+  </a></li></ul></div></header> <div itemprop="articleBody" class="content__default"><h2 id="新建项目"><a href="#新建项目" class="header-anchor">#</a> 新建项目</h2> <div class="language-bash extra-class"><pre class="language-bash"><code>vue create <span class="token operator">&lt;</span>Project Name<span class="token operator">&gt;</span> //用于发布npm包的项目文件名
+</code></pre></div><p>这里选择用vue2</p> <h2 id="调整目录文件"><a href="#调整目录文件" class="header-anchor">#</a> 调整目录文件</h2> <ul><li>将 src 文件夹名称更改为 examples （ examples 用作示例展示 ）。</li> <li>根目录下（src同级目录）新增 packages 文件夹，用于编写要发布的组件。</li> <li>修改 vue.config.js</li></ul> <div class="language-js extra-class"><pre class="language-js"><code>  <span class="token comment">//由于修改了src文件夹名称，重新指定启动入口</span>
+    module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 将 examples 目录添加为新的页面</span>
+      pages<span class="token operator">:</span> <span class="token punctuation">{</span>
+        index<span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token comment">// page 的入口</span>
+          entry<span class="token operator">:</span> <span class="token string">'examples/main.js'</span><span class="token punctuation">,</span>
+          <span class="token comment">// 模板来源</span>
+          template<span class="token operator">:</span> <span class="token string">'public/index.html'</span><span class="token punctuation">,</span>
+          <span class="token comment">// 输出文件名</span>
+          filename<span class="token operator">:</span> <span class="token string">'index.html'</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><p><img src="/blog2022/assets/img/1.b07f17f1.png" alt="mulu"></p> <h2 id="开发组件"><a href="#开发组件" class="header-anchor">#</a> 开发组件</h2> <p>在 packages 文件内新建一个文件夹btn，然后在其内新建一个 xx.vue  开发的组件；再新建一个 index.js 用于组件的导入导出。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//packages/btn/myBtn.vue</span>
+<span class="token operator">&lt;</span>template<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
+    mybtn
+ <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span>
+
+<span class="token operator">&lt;</span>script<span class="token operator">&gt;</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">'myBtn'</span><span class="token punctuation">,</span>
+  <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  props<span class="token operator">:</span> <span class="token punctuation">{</span>
+
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  components<span class="token operator">:</span><span class="token punctuation">{</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">mounted</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  methods<span class="token operator">:</span><span class="token punctuation">{</span>
+
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+ <span class="token punctuation">}</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+
+<span class="token operator">&lt;</span>style scoped lang<span class="token operator">=</span><span class="token string">'scss'</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">&gt;</span>
+</code></pre></div><div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//packages/btn/index.js</span>
+<span class="token keyword">import</span> myBtn <span class="token keyword">from</span> <span class="token string">'./myBtn.vue'</span>
+<span class="token comment">// 为组件添加 install 方法，用于按需引入</span>
+myBtn<span class="token punctuation">.</span><span class="token function-variable function">install</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">Vue</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  Vue<span class="token punctuation">.</span><span class="token function">component</span><span class="token punctuation">(</span>myBtn<span class="token punctuation">.</span>name<span class="token punctuation">,</span> myBtn<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> myBtn<span class="token punctuation">;</span>
+
+</code></pre></div><p>在 packages 文件内新建 index.js 文件作为入口文件用于组件的导入导出并安装</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// packages/index.js</span>
+    <span class="token comment">// 导入组件,可有多个</span>
+    <span class="token keyword">import</span> myBtn <span class="token keyword">from</span> <span class="token string">'./btn/index'</span>
+
+    <span class="token comment">// 把组件保存到一个数组中,可有多个</span>
+    <span class="token keyword">const</span> components <span class="token operator">=</span> <span class="token punctuation">[</span>
+      myBtn
+    <span class="token punctuation">]</span>
+    
+    <span class="token comment">// 定义 install 方法，接收 Vue 作为参数。如果使用 use 注册插件，那么所有的组件都会被注册</span>
+    <span class="token keyword">const</span> <span class="token function-variable function">install</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">Vue</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 判断是否安装</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>install<span class="token punctuation">.</span>installed<span class="token punctuation">)</span> <span class="token keyword">return</span>
+      install<span class="token punctuation">.</span>installed <span class="token operator">=</span> <span class="token boolean">true</span>
+      <span class="token comment">// 遍历组件列表并注册全局组件</span>
+      components<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">component</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        Vue<span class="token punctuation">.</span><span class="token function">component</span><span class="token punctuation">(</span>component<span class="token punctuation">.</span>name<span class="token punctuation">,</span> component<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token comment">// 判断是否是直接引入文件</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> window <span class="token operator">!==</span> <span class="token string">'undefined'</span> <span class="token operator">&amp;&amp;</span> window<span class="token punctuation">.</span>Vue<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">install</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>Vue<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 导出的对象必须具备一个 install 方法，才能被 Vue.use() 方法安装</span>
+      install<span class="token punctuation">,</span>
+      <span class="token comment">// 组件列表</span>
+      <span class="token operator">...</span>components
+    <span class="token punctuation">}</span>
+    
+</code></pre></div><h2 id="测试组件"><a href="#测试组件" class="header-anchor">#</a> 测试组件</h2> <p>在 examples 文件夹内的入口文件 main.js 中导入并使用我们开发的组件。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
+<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./App.vue'</span>
+<span class="token keyword">import</span> myBtn  <span class="token keyword">from</span> <span class="token string">'/packages'</span>
+
+
+Vue<span class="token punctuation">.</span>config<span class="token punctuation">.</span>productionTip <span class="token operator">=</span> <span class="token boolean">false</span>
+
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>myBtn<span class="token punctuation">)</span>
+
+<span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token function-variable function">render</span><span class="token operator">:</span> <span class="token parameter">h</span> <span class="token operator">=&gt;</span> <span class="token function">h</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">$mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span>
+
+</code></pre></div><p>App.vue中使用</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>app<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>my-btn</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>my-btn</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p><code>npm run serve</code></p> <h2 id="配置package-json打包命令"><a href="#配置package-json打包命令" class="header-anchor">#</a> 配置package.json打包命令</h2> <p>在 scripts 中加上打包命令,  <code>&quot;lib&quot;: &quot;vue-cli-service build --target lib --name warn-sun-btn --dest lib packages/index.js&quot;</code></p> <ul><li>target: 默认为构建应用，改为 lib 即可启用构建库模式</li> <li>name: 输出文件名</li> <li>dest: 输出目录，默认为 dist，这里我们改为 lib</li> <li>entry: 入口文件路径，默认为 src/App.vue，这里改为 packages/index.js</li></ul> <p>执行 <code>npm run lib</code>
+根目录中会生成一个 lib 文件夹。</p> <p><img src="/blog2022/assets/img/2.da0afbf7.png" alt="lib"></p> <h2 id="修改-package-json-文件的包名、版本号等信息。"><a href="#修改-package-json-文件的包名、版本号等信息。" class="header-anchor">#</a> 修改 package.json 文件的包名、版本号等信息。</h2> <ul><li>name： 包名，该名不能和npm上已有的名称冲突（必须）</li> <li>version： 版本号，不能和历史版本号相同（必须）</li> <li>main： 入口文件，应指向编译后的包文件（必须）</li> <li>private： 是否私有，需要修改为 false 才能发布到 npm（必须）</li> <li>license： &quot;MIT&quot;     开源协议（必须）</li> <li>description： 简介</li> <li>author： 作者</li> <li>keyword： 关键字，以空格分割</li> <li>typings： ts入口文件</li> <li>repository： 指定仓库</li></ul> <p><img src="/blog2022/assets/img/3.a955896d.png" alt="lib"></p> <h2 id="根目录下创建发布忽略文件-npmignore"><a href="#根目录下创建发布忽略文件-npmignore" class="header-anchor">#</a> 根目录下创建发布忽略文件 .npmignore</h2> <div class="language-bash extra-class"><pre class="language-bash"><code>    .DS_Store
+    node_modules/
+    examples/
+    packages/
+    public/
+    vue.config.js
+    babel.config.js
+    *.map
+    *.html
+
+    <span class="token comment"># 本地开发文件</span>
+    .env.local
+    .env.*.local
+
+    <span class="token comment"># 日志文件</span>
+    npm-debug.log*
+    yarn-debug.log*
+    yarn-error.log*
+
+    <span class="token comment"># 编辑器文件</span>
+    .idea
+    .vscode
+    *.suo
+    *.ntvs*
+    *.njsproj
+    *.sln
+    *.sw*
+
+</code></pre></div><h2 id="修改readme-md文件"><a href="#修改readme-md文件" class="header-anchor">#</a> 修改README.md文件</h2> <p>写文档之类的</p> <h2 id="发布npm"><a href="#发布npm" class="header-anchor">#</a> 发布npm</h2> <p>检查npm源是不是: https://registry.npmjs.org/，大多数人都改成了淘宝镜像，需要改回来</p> <p>根目录下</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> login
+</code></pre></div><p>需输入账号、密码、邮箱、验证码</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> publish
+</code></pre></div><p>发布成功</p> <p>如果出现了更新完但是npm官网上没有更新</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> publish <span class="token builtin class-name">.</span>
+</code></pre></div><h2 id="报错信息"><a href="#报错信息" class="header-anchor">#</a> 报错信息</h2> <p><code>403 Forbidden - PUT https://registry.npmjs.org/mytest - You do not have permission to publish &quot;mytest&quot;. Are you logged in as the correct user?</code>
+意思是<code>mytest</code>这个包名已经存在了，需要换个不重复的名字</p> <h2 id="安装使用"><a href="#安装使用" class="header-anchor">#</a> 安装使用</h2> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> <span class="token function">install</span> hqltestbtn
+</code></pre></div></div> <footer><!----> <hr></footer></article> <div class="sticker vuepress-toc"><div class="vuepress-toc-item vuepress-toc-h2 active"><a href="#新建项目" title="新建项目">新建项目</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#调整目录文件" title="调整目录文件">调整目录文件</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#开发组件" title="开发组件">开发组件</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#测试组件" title="测试组件">测试组件</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#配置package-json打包命令" title="配置package.json打包命令">配置package.json打包命令</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#修改-package-json-文件的包名、版本号等信息。" title="修改 package.json 文件的包名、版本号等信息。">修改 package.json 文件的包名、版本号等信息。</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#根目录下创建发布忽略文件-npmignore" title="根目录下创建发布忽略文件 .npmignore">根目录下创建发布忽略文件 .npmignore</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#修改readme-md文件" title="修改README.md文件">修改README.md文件</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#发布npm" title="发布npm">发布npm</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#报错信息" title="报错信息">报错信息</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#安装使用" title="安装使用">安装使用</a></div></div></div></div></div><div class="global-ui"></div></div>
+    <script src="/blog2022/assets/js/app.e07d4dc1.js" defer></script><script src="/blog2022/assets/js/8.0521c81c.js" defer></script><script src="/blog2022/assets/js/4.6dd61d22.js" defer></script><script src="/blog2022/assets/js/10.86036be1.js" defer></script>
+  </body>
+</html>
